@@ -1,0 +1,44 @@
+@startuml
+
+class World{
+    + static final int WIDTH = 40
+    + static final int HEIGHT = 20
+
+    - Tile<Thing>[][] tiles
+
+    + get()
+    + put()
+}
+
+class Tile <T extends Thing>{
+    - T thing
+    - int xPos
+    - int yPos
+    + T getThing()
+    + setThing()
+    + getxPos()
+    + setxPos()
+    + getyPos()
+    + setyPos()
+
+}
+
+class Thing{
+    # World world
+    + Tile<? extends Thing> tile
+    - final Color color
+    - final char glyph
+
+    + getX()
+    + getY()
+    + setTile()
+    + getColor()
+    + getGlyph()
+
+}
+
+World o- Thing
+Thing <- Tile
+Tile o- Thing
+
+@enduml
