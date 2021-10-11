@@ -20,7 +20,7 @@ public class WorldScreen implements Screen {
 
     public WorldScreen() {
         world = new World();
-        this.matrix=new Matrix(6, world);
+        this.matrix=new Matrix(7, world);
         BubbleSorter<Monster> b = new BubbleSorter<>();
         b.load(matrix.getAsList());
         b.sort();
