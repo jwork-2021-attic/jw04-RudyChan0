@@ -126,10 +126,11 @@ public class PlayScreen implements Screen {
                 player.moveBy(0, 1);
                 break;
         }
-        world.pass(player.x(), player.y(),Tile.PASSED);
         if(world.tile(player.x(), player.y())==Tile.EXIT){
             return new WinScreen();
         }
+        world.pass(player.x(), player.y(),Tile.PASSED);
+        
         return this;
     }
 
