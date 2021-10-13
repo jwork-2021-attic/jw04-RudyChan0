@@ -49,6 +49,12 @@ public class World {
         }
     }
 
+    public void pass(int x, int y,Tile tile) {
+        tiles[x][y]=tile;
+                
+    }
+
+
     public char glyph(int x, int y) {
         return tiles[x][y].glyph();
     }
@@ -86,6 +92,7 @@ public class World {
         this.creatures.add(creature);
     }
 
+
     public Creature creature(int x, int y) {
         for (Creature c : this.creatures) {
             if (c.x() == x && c.y() == y) {
@@ -110,4 +117,11 @@ public class World {
             creature.update();
         }
     }
+    
+    // public boolean onExit(int x ,int y){
+    //     if(x==this.width&&y==this.height){
+    //         return true;
+    //     }
+    //     return false;
+    // }
 }

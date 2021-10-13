@@ -38,8 +38,8 @@ public class PlayScreen implements Screen {
     private List<String> oldMessages;
 
     public PlayScreen() {
-        this.screenWidth = 80;
-        this.screenHeight = 24;
+        this.screenWidth = 35;
+        this.screenHeight = 35;
         createWorld();
         this.messages = new ArrayList<String>();
         this.oldMessages = new ArrayList<String>();
@@ -51,13 +51,14 @@ public class PlayScreen implements Screen {
     private void createCreatures(CreatureFactory creatureFactory) {
         this.player = creatureFactory.newPlayer(this.messages);
 
-        for (int i = 0; i < 8; i++) {
-            creatureFactory.newFungus();
-        }
+        // for (int i = 0; i < 8; i++) {
+        //     creatureFactory.newFungus();
+        // }
     }
 
     private void createWorld() {
-        world = new WorldBuilder(90, 31).makeCaves().build();
+        //world = new WorldBuilder(90, 31).makeCaves().build();
+        world = new WorldBuilder(this.screenWidth, this.screenHeight).makeMaze().build();
     }
 
     private void displayTiles(AsciiPanel terminal, int left, int top) {
@@ -103,8 +104,8 @@ public class PlayScreen implements Screen {
         // Player
         terminal.write(player.glyph(), player.x() - getScrollX(), player.y() - getScrollY(), player.color());
         // Stats
-        String stats = String.format("%3d/%3d hp", player.hp(), player.maxHP());
-        terminal.write(stats, 1, 23);
+        // String stats = String.format("%3d/%3d hp", player.hp(), player.maxHP());
+        // terminal.write(stats, 1, 23);
         // Messages
         displayMessages(terminal, this.messages);
     }
@@ -124,6 +125,10 @@ public class PlayScreen implements Screen {
             case KeyEvent.VK_DOWN:
                 player.moveBy(0, 1);
                 break;
+        }
+        world.pass(player.x(), player.y(),Tile.PASSED);
+        if(world.tile(player.x(), player.y())==Tile.EXIT){
+            return new WinScreen();
         }
         return this;
     }

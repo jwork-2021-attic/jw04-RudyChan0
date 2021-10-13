@@ -35,8 +35,9 @@ public class CreatureFactory {
 
     public Creature newPlayer(List<String> messages) {
         Creature player = new Creature(this.world, (char)2, AsciiPanel.brightWhite, 100, 20, 5, 9);
-        world.addAtEmptyLocation(player);
-        new PlayerAI(player, messages);
+        //world.addAtEmptyLocation(player);
+        // world.addAtStart(player);
+        new PlayerAI(player, messages).onEnter(0, 0, world.tile(0, 0));;
         return player;
     }
 

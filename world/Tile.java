@@ -26,11 +26,17 @@ import java.awt.Color;
  */
 public enum Tile {
 
-    FLOOR((char) 250, AsciiPanel.green),
+    // FLOOR((char) 250, AsciiPanel.green),
+    FLOOR((char) 0, AsciiPanel.green),
 
     WALL((char) 177, AsciiPanel.brightBlack),
 
-    BOUNDS('x', AsciiPanel.magenta);
+    BOUNDS('x', AsciiPanel.magenta),
+
+    PASSED((char)250,AsciiPanel.green),
+
+    EXIT((char)31,AsciiPanel.green);
+
 
     private char glyph;
 

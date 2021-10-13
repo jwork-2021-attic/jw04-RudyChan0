@@ -96,4 +96,33 @@ public class WorldBuilder {
     public WorldBuilder makeCaves() {
         return randomizeTiles().smooth(8);
     }
+
+    public WorldBuilder makeMaze(){
+        MazeGenerator mazeGenerator = new MazeGenerator(this.width>this.height?this.width:this.height);
+        mazeGenerator.generateMaze();
+        int[][] maze=mazeGenerator.getMaze();
+        for (int width = 0; width < this.width; width++) {
+            for (int height = 0; height < this.height; height++) {
+                switch (maze[width][height]) {
+                    case 1:
+                        tiles[width][height] = Tile.FLOOR;
+                        break;
+                    case 0:
+                        tiles[width][height] = Tile.WALL;
+                        break;
+                }
+            }
+        }
+        for(int x=this.width-1,y=this.height-1;x>-1&&y>-1;){
+            if(maze[x][y]==1){
+                tiles[x][y]=Tile.EXIT;
+                break;
+            }
+            else{
+                if(x>y)y--;
+                else x--;
+            }
+        }
+        return this;
+    }
 }

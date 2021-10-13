@@ -157,4 +157,8 @@ public class Creature {
         this.defenseValue = defense;
         this.visionRadius = visionRadius;
     }
+
+    // public boolean onExit(){
+    //     return world.onExit(x, y);
+    // }
 }
